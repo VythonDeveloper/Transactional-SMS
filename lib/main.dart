@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     systemColors();
     return MaterialApp(
-      title: 'Transaction SMS Bomb',
+      title: 'Transaction & Promotion SMS Bomb',
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData.dark(useMaterial3: true),

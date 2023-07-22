@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sms_bombing/SmsModel/centralBank.dart';
 import 'package:sms_bombing/SmsModel/csfBank.dart';
 import 'package:sms_bombing/SmsModel/federalBank.dart';
+import 'package:sms_bombing/SmsModel/flipkartPromt.dart';
 import 'package:sms_bombing/SmsModel/kotakBank.dart';
+import 'package:sms_bombing/SmsModel/meeshoPromt.dart';
+import 'package:sms_bombing/SmsModel/swiggyPromt.dart';
 import 'package:sms_bombing/utils/constant.dart';
 import 'package:sms_bombing/screens/messageUI.dart';
 import 'package:sms_bombing/utils/components.dart';
@@ -13,6 +16,7 @@ import 'dart:async';
 import 'dart:math';
 import '../SmsModel/canaraBank.dart';
 import '../SmsModel/idfcBank.dart';
+import '../SmsModel/zomatoPromt.dart';
 
 // import 'dart:developer' as dev;
 
@@ -33,6 +37,10 @@ class _HomeUIState extends State<HomeUI> {
   late FederalBank federalBank;
   late IDFCBank idfcBank;
   late KotakBank kotakBank;
+  late ZomatoPromt zomatoPromt;
+  late MeeshoPromt meeshoPromt;
+  late SwiggyPromt swiggyPromt;
+  late FlipkartPromt flipkartPromt;
 
   @override
   void initState() {
@@ -129,6 +137,10 @@ class _HomeUIState extends State<HomeUI> {
     federalBank = new FederalBank();
     idfcBank = new IDFCBank();
     kotakBank = new KotakBank();
+    zomatoPromt = new ZomatoPromt();
+    meeshoPromt = new MeeshoPromt();
+    swiggyPromt = new SwiggyPromt();
+    flipkartPromt = new FlipkartPromt();
 
     List txnTypeList = ['credit', 'debit'];
 
@@ -142,6 +154,10 @@ class _HomeUIState extends State<HomeUI> {
         federalBank,
         idfcBank,
         kotakBank,
+        zomatoPromt,
+        meeshoPromt,
+        swiggyPromt,
+        flipkartPromt
       ];
       smsFunctions.shuffle();
       var smsFormat = smsFunctions[Random().nextInt(smsFunctions.length)]
@@ -221,7 +237,7 @@ class _HomeUIState extends State<HomeUI> {
       child: Scaffold(
         backgroundColor: Colors.grey.shade900,
         appBar: AppBar(
-          title: Text("Transaction SMS Bomb"),
+          title: Text("Transaction & Promotion SMS Bomb"),
           centerTitle: true,
         ),
         body: Padding(
