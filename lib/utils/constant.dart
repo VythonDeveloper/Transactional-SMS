@@ -2,8 +2,8 @@ List<dynamic> dateMasterList = [];
 List<dynamic> messagesList = [];
 Map<dynamic, dynamic> messageDictionary = {};
 int monthRange = 122; //n months * 30 days
-int otherDaySmsCount = 28;
-int todaySmsCount = 28;
+int otherDaySmsCount = 30;
+int todaySmsCount = 100;
 
 Map<String, String> bankIcon = {
   'QP-CANBNK':

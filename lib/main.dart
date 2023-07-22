@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:sms_bombing/screens/homeUI.dart';
+import 'package:sms_bombing/screens/PromotionHomeUI.dart';
 import 'package:sms_bombing/utils/components.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     systemColors();
     return MaterialApp(
-      title: 'Transaction & Promotion SMS Bomb',
+      title: 'Promotion 24H SMS Bomb',
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData.dark(useMaterial3: true),
