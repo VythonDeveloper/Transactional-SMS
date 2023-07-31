@@ -3,8 +3,11 @@ import 'package:sms_bombing/SmsModel/centralBank.dart';
 import 'package:sms_bombing/SmsModel/csfBank.dart';
 import 'package:sms_bombing/SmsModel/federalBank.dart';
 import 'package:sms_bombing/SmsModel/flipkartPromt.dart';
+import 'package:sms_bombing/SmsModel/iciciBank.dart';
 import 'package:sms_bombing/SmsModel/kotakBank.dart';
 import 'package:sms_bombing/SmsModel/meeshoPromt.dart';
+import 'package:sms_bombing/SmsModel/pnbBank.dart';
+import 'package:sms_bombing/SmsModel/sbiBank.dart';
 import 'package:sms_bombing/SmsModel/swiggyPromt.dart';
 import 'package:sms_bombing/utils/constant.dart';
 import 'package:sms_bombing/screens/messageUI.dart';
@@ -28,6 +31,13 @@ class HomeUI extends StatefulWidget {
 }
 
 class _HomeUIState extends State<HomeUI> {
+  List<dynamic> dateMasterList = [];
+  List<dynamic> messagesList = [];
+  Map<dynamic, dynamic> messageDictionary = {};
+  int monthRange = 180; //n months * 30 days
+  int otherDaySmsCount = 45;
+  int todaySmsCount = 100;
+
   Random random = new Random();
   DateTime? currentBackPressTime;
   bool isLoading = false;
@@ -37,6 +47,9 @@ class _HomeUIState extends State<HomeUI> {
   late FederalBank federalBank;
   late IDFCBank idfcBank;
   late KotakBank kotakBank;
+  late SBIBank sbiBank;
+  late ICICIBank iciciBank;
+  late PnbBank pnbBank;
   late ZomatoPromt zomatoPromt;
   late MeeshoPromt meeshoPromt;
   late SwiggyPromt swiggyPromt;
@@ -136,6 +149,9 @@ class _HomeUIState extends State<HomeUI> {
     federalBank = new FederalBank();
     idfcBank = new IDFCBank();
     kotakBank = new KotakBank();
+    sbiBank = new SBIBank();
+    iciciBank = new ICICIBank();
+    pnbBank = new PnbBank();
     zomatoPromt = new ZomatoPromt();
     meeshoPromt = new MeeshoPromt();
     swiggyPromt = new SwiggyPromt();
@@ -153,6 +169,9 @@ class _HomeUIState extends State<HomeUI> {
         federalBank,
         idfcBank,
         kotakBank,
+        sbiBank,
+        iciciBank,
+        pnbBank,
         zomatoPromt,
         meeshoPromt,
         swiggyPromt,

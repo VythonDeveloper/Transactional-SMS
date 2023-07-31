@@ -1,12 +1,12 @@
 import 'dart:math';
 import 'package:intl/intl.dart';
 
-class IDFCBank {
+class PnbBank {
   Random random = new Random();
-  // IDFC Bank Variables
-  int account = 100000; //6 digit
+  // Pnb Bank Variables
+  int account = 1000; //4 digit
   double balance = 90000;
-  List address = ['VD-IDFCFB', 'VM-IDFCFB'];
+  List address = ['VM-PNBSMS'];
   List serviceNumbers = [
     '+911725199998',
     '+917012075009',
@@ -14,12 +14,10 @@ class IDFCBank {
     '+917011075093'
   ];
   String debitSms =
-      "[VD-IDFCFB] Your A/C XXXXX301198 is debited by INR 10.00 on 18/07/23 09:05. New Bal :INR 137.00. Call us on 180010888 for dispute. Team IDFC FIRST Bank";
-  String creditSms =
-      "[VM-IDFCFB] Your A/C XXXXX301198 is credited with INR 10.00 on 18/07/23 09:01. Your new balance is INR 147.00. Team IDFC FIRST Bank";
+      "Ac XXXXXXXX0932 Credited with Rs.110.00,11-07-2023 05:07:05 thru NEFT from PHONEPE PRIVATE LIMITED -PAYMEN. Aval Bal 205.19 CR Helpline 18001800/18002021-PNB";
 
-  IDFCBank() {
-    account = 100000 + random.nextInt(1000000 - 100000);
+  PnbBank() {
+    account = 1000 + random.nextInt(10000 - 1000);
     balance = random.nextDouble() * 90000;
   }
 
@@ -28,45 +26,29 @@ class IDFCBank {
     String smsBody = '';
     DateTime txnDate = DateTime.fromMillisecondsSinceEpoch(millisecond);
     String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
-        "/" +
+        "-" +
         txnDate.month.toString().padLeft(2, '0') +
-        "/" +
+        "-" +
         txnDate.year.toString() +
         " " +
         txnDate.hour.toString().padLeft(2, '0') +
         ":" +
-        txnDate.minute.toString().padLeft(2, '0');
-
-    if (txnType.toLowerCase() == 'debit') {
-      int amount = 100 + random.nextInt(100000 - 100);
-      if (amount < balance) {
-        balance = balance - amount;
-        smsBody = "Your A/C XXXXX" +
-            account.toString() +
-            " is debited by INR " +
-            amount.toStringAsFixed(2) +
-            " on " +
-            formatTxnDate +
-            ". New Bal :INR " +
-            balance.toStringAsFixed(2) +
-            ". Call us on 180010888 for dispute. Team IDFC FIRST Bank";
-      } else {
-        txnType = 'credit';
-      }
-    }
-
-    if (txnType.toLowerCase() == "credit") {
-      int amount = 1000 + random.nextInt(100000 - 1000);
+        txnDate.minute.toString().padLeft(2, '0') +
+        ":" +
+        txnDate.second.toString().padLeft(2, '0');
+    if (1 == 1) {
+      int amount = 900 + random.nextInt(10000 - 900);
       balance = balance + amount;
-      smsBody = "Your A/C XXXXX" +
+
+      smsBody = "Ac XXXXXXXX" +
           account.toString() +
-          " is credited with INR " +
-          amount.toStringAsFixed(2) +
-          " on " +
+          " Credited with Rs." +
+          amount.toString() +
+          ".00," +
           formatTxnDate +
-          ". Your new balance is INR " +
+          " thru NEFT from PHONEPE PRIVATE LIMITED -PAYMEN. Aval Bal " +
           balance.toStringAsFixed(2) +
-          ". Team IDFC FIRST Bank";
+          " CR Helpline 18001800/18002021-PNB";
     }
 
     return {

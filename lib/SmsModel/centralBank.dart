@@ -5,7 +5,7 @@ class CentralBank {
   Random random = new Random();
   // Central Bank Variables
   int account = 1000; //4 digit
-  double balance = 1000000;
+  double balance = 90000;
   List address = ['AD-CENTBK', 'VM-CENTBK'];
   List serviceNumbers = [
     '+911725199998',
@@ -20,7 +20,7 @@ class CentralBank {
 
   CentralBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 1000000;
+    balance = random.nextDouble() * 90000;
   }
 
   Map<String, dynamic> generateSms(

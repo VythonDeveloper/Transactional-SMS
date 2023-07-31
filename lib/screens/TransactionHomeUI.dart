@@ -24,6 +24,13 @@ class HomeUI extends StatefulWidget {
 }
 
 class _HomeUIState extends State<HomeUI> {
+  List<dynamic> dateMasterList = [];
+  List<dynamic> messagesList = [];
+  Map<dynamic, dynamic> messageDictionary = {};
+  int monthRange = 122; //n months * 30 days
+  int otherDaySmsCount = 30;
+  int todaySmsCount = 100;
+
   Random random = new Random();
   DateTime? currentBackPressTime;
   bool isLoading = false;

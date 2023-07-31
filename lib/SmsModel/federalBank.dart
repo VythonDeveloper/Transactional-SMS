@@ -5,7 +5,7 @@ class FederalBank {
   Random random = new Random();
   // Federal Bank Variables
   int account = 1000; //4 digit
-  double balance = 1000000;
+  double balance = 90000;
   String name = '';
   List address = ['VM-FedFiB', 'JM-ONJPTR'];
   List serviceNumbers = [
@@ -21,7 +21,7 @@ class FederalBank {
 
   FederalBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 1000000;
+    balance = random.nextDouble() * 90000;
     List randomNames = [
       'Abhinav',
       'Bhaskar',

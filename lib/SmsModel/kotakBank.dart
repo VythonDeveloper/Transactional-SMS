@@ -5,7 +5,7 @@ class KotakBank {
   Random random = new Random();
   // Kotak Bank Variables
   int account = 1000; //4 digit
-  double balance = 1000000;
+  double balance = 90000;
   List address = ['JM-KOTAKB'];
   List serviceNumbers = [
     '+911725199998',
@@ -18,7 +18,7 @@ class KotakBank {
 
   KotakBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 1000000;
+    balance = random.nextDouble() * 90000;
   }
 
   Map<String, dynamic> generateSms(

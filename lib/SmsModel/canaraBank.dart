@@ -5,7 +5,7 @@ class CanaraBank {
   Random random = new Random();
   // Canara Bank Variables
   int account = 100; //3 digit
-  double balance = 1000000;
+  double balance = 90000;
   List address = ['QP-CANBNK', 'JD-CANBNK'];
   List serviceNumbers = [
     '+911725199998',
@@ -20,7 +20,7 @@ class CanaraBank {
 
   CanaraBank() {
     account = 100 + random.nextInt(1000 - 100);
-    balance = random.nextDouble() * 1000000;
+    balance = random.nextDouble() * 90000;
   }
 
   Map<String, dynamic> generateSms(
