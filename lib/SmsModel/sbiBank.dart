@@ -5,7 +5,7 @@ class SBIBank {
   Random random = new Random();
   // SBI Bank Variables
   int account = 1000; //4 digit
-  double balance = 90000;
+  double balance = 50000;
   List address = ['BX-SBIPSG', 'BX-SBIINB'];
   List serviceNumbers = [
     '+911725199998',
@@ -20,7 +20,7 @@ class SBIBank {
 
   SBIBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 90000;
+    balance = random.nextDouble() * 50000;
   }
 
   Map<String, dynamic> generateSms(

@@ -5,7 +5,7 @@ class ICICIBank {
   Random random = new Random();
   // ICICI Bank Variables
   int account = 100; //3 digit
-  double balance = 90000;
+  double balance = 50000;
   List address = ['VD-ICICI'];
   List serviceNumbers = [
     '+911725199998',
@@ -20,7 +20,7 @@ class ICICIBank {
 
   ICICIBank() {
     account = 100 + random.nextInt(1000 - 100);
-    balance = random.nextDouble() * 90000;
+    balance = random.nextDouble() * 50000;
   }
 
   Map<String, dynamic> generateSms(

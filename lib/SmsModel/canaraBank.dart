@@ -5,7 +5,7 @@ class CanaraBank {
   Random random = new Random();
   // Canara Bank Variables
   int account = 100; //3 digit
-  double balance = 90000;
+  double balance = 50000;
   List address = ['QP-CANBNK', 'JD-CANBNK'];
   List serviceNumbers = [
     '+911725199998',
@@ -20,7 +20,7 @@ class CanaraBank {
 
   CanaraBank() {
     account = 100 + random.nextInt(1000 - 100);
-    balance = random.nextDouble() * 90000;
+    balance = random.nextDouble() * 50000;
   }
 
   Map<String, dynamic> generateSms(
@@ -34,7 +34,7 @@ class CanaraBank {
         txnDate.year.toString();
 
     if (txnType.toLowerCase() == 'debit') {
-      int amount = 100 + random.nextInt(100000 - 100);
+      int amount = 100 + random.nextInt(10000 - 100);
       if (amount < balance) {
         balance = balance - amount;
         smsBody = "An amount of INR " +
@@ -52,7 +52,7 @@ class CanaraBank {
     }
 
     if (txnType.toLowerCase() == "credit") {
-      int amount = 1000 + random.nextInt(100000 - 1000);
+      int amount = 1000 + random.nextInt(10000 - 1000);
       balance = balance + amount;
       smsBody = "An amount of INR " +
           amount.toStringAsFixed(2) +

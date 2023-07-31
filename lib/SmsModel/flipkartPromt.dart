@@ -5,7 +5,7 @@ class FlipkartPromt {
   Random random = new Random();
   // Flipkart Bank Variables
   int account = 1000; //4 digit
-  double balance = 1000000;
+  double balance = 50000;
   List address = ['JD-FLPKRT'];
   List serviceNumbers = [
     '+911725199998',

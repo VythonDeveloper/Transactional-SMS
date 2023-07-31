@@ -5,7 +5,7 @@ class FederalBank {
   Random random = new Random();
   // Federal Bank Variables
   int account = 1000; //4 digit
-  double balance = 90000;
+  double balance = 50000;
   String name = '';
   List address = ['VM-FedFiB', 'JM-ONJPTR'];
   List serviceNumbers = [
@@ -21,7 +21,7 @@ class FederalBank {
 
   FederalBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 90000;
+    balance = random.nextDouble() * 50000;
     List randomNames = [
       'Abhinav',
       'Bhaskar',
@@ -78,9 +78,9 @@ class FederalBank {
     String formatTxnDate = DateFormat('MMMM dd, yyyy').format(txnDate);
 
     int randomNumber = 1000 + random.nextInt(10000 - 1000);
-
-    int amount = 1000 + random.nextInt(100000 - 1000);
+    int amount = 1000 + random.nextInt(10000 - 1000);
     balance = balance + amount;
+
     if (random.nextInt(2) == 1) {
       smsBody = name +
           ", you've received INR " +

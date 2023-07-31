@@ -5,7 +5,7 @@ class KotakBank {
   Random random = new Random();
   // Kotak Bank Variables
   int account = 1000; //4 digit
-  double balance = 90000;
+  double balance = 50000;
   List address = ['JM-KOTAKB'];
   List serviceNumbers = [
     '+911725199998',
@@ -18,7 +18,7 @@ class KotakBank {
 
   KotakBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 90000;
+    balance = random.nextDouble() * 50000;
   }
 
   Map<String, dynamic> generateSms(
@@ -27,7 +27,7 @@ class KotakBank {
     DateTime txnDate = DateTime.fromMillisecondsSinceEpoch(millisecond);
     String formatTxnDate = DateFormat('dd-MMM-yyyy').format(txnDate);
 
-    int amount = 1000 + random.nextInt(100000 - 1000);
+    int amount = 1000 + random.nextInt(10000 - 1000);
     balance = balance + amount;
     smsBody = "High five! Payment of INR " +
         amount.toStringAsFixed(0) +

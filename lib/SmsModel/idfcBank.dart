@@ -5,7 +5,7 @@ class IDFCBank {
   Random random = new Random();
   // IDFC Bank Variables
   int account = 100000; //6 digit
-  double balance = 90000;
+  double balance = 50000;
   List address = ['VD-IDFCFB', 'VM-IDFCFB'];
   List serviceNumbers = [
     '+911725199998',
@@ -20,7 +20,7 @@ class IDFCBank {
 
   IDFCBank() {
     account = 100000 + random.nextInt(1000000 - 100000);
-    balance = random.nextDouble() * 90000;
+    balance = random.nextDouble() * 50000;
   }
 
   Map<String, dynamic> generateSms(
@@ -38,7 +38,7 @@ class IDFCBank {
         txnDate.minute.toString().padLeft(2, '0');
 
     if (txnType.toLowerCase() == 'debit') {
-      int amount = 100 + random.nextInt(100000 - 100);
+      int amount = 100 + random.nextInt(10000 - 100);
       if (amount < balance) {
         balance = balance - amount;
         smsBody = "Your A/C XXXXX" +
@@ -56,7 +56,7 @@ class IDFCBank {
     }
 
     if (txnType.toLowerCase() == "credit") {
-      int amount = 1000 + random.nextInt(100000 - 1000);
+      int amount = 1000 + random.nextInt(10000 - 1000);
       balance = balance + amount;
       smsBody = "Your A/C XXXXX" +
           account.toString() +

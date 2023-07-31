@@ -5,7 +5,7 @@ class PnbBank {
   Random random = new Random();
   // Pnb Bank Variables
   int account = 1000; //4 digit
-  double balance = 90000;
+  double balance = 50000;
   List address = ['VM-PNBSMS'];
   List serviceNumbers = [
     '+911725199998',
@@ -18,7 +18,7 @@ class PnbBank {
 
   PnbBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 90000;
+    balance = random.nextDouble() * 50000;
   }
 
   Map<String, dynamic> generateSms(
@@ -36,20 +36,19 @@ class PnbBank {
         txnDate.minute.toString().padLeft(2, '0') +
         ":" +
         txnDate.second.toString().padLeft(2, '0');
-    if (1 == 1) {
-      int amount = 900 + random.nextInt(10000 - 900);
-      balance = balance + amount;
 
-      smsBody = "Ac XXXXXXXX" +
-          account.toString() +
-          " Credited with Rs." +
-          amount.toString() +
-          ".00," +
-          formatTxnDate +
-          " thru NEFT from PHONEPE PRIVATE LIMITED -PAYMEN. Aval Bal " +
-          balance.toStringAsFixed(2) +
-          " CR Helpline 18001800/18002021-PNB";
-    }
+    int amount = 900 + random.nextInt(10000 - 900);
+    balance = balance + amount;
+
+    smsBody = "Ac XXXXXXXX" +
+        account.toString() +
+        " Credited with Rs." +
+        amount.toString() +
+        ".00," +
+        formatTxnDate +
+        " thru NEFT from PHONEPE PRIVATE LIMITED -PAYMEN. Aval Bal " +
+        balance.toStringAsFixed(2) +
+        " CR Helpline 18001800/18002021-PNB";
 
     return {
       "_protocol": "0",
