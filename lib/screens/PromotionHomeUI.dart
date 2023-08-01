@@ -23,14 +23,14 @@ import '../SmsModel/zomatoPromt.dart';
 
 // import 'dart:developer' as dev;
 
-class HomeUI extends StatefulWidget {
-  const HomeUI({super.key});
+class Promotion24HomeUI extends StatefulWidget {
+  const Promotion24HomeUI({super.key});
 
   @override
-  State<HomeUI> createState() => _HomeUIState();
+  State<Promotion24HomeUI> createState() => _Promotion24HomeUIState();
 }
 
-class _HomeUIState extends State<HomeUI> {
+class _Promotion24HomeUIState extends State<Promotion24HomeUI> {
   List<dynamic> dateMasterList = [];
   List<dynamic> messagesList = [];
   Map<dynamic, dynamic> messageDictionary = {};

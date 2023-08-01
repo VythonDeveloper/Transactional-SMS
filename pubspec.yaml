@@ -1,7 +1,7 @@
 name: sms_bombing
-description: Promotion 24H SMS Bomb
+description: Future Promotion 24H SMS Bomb
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
-version: 1.0.4+5
+version: 1.0.5+6
 
 environment:
   sdk: ">=2.19.6 <3.0.0"
@@ -13,6 +13,7 @@ dependencies:
   intl: ^0.18.1
   path_provider: ^2.0.15
   permission_handler: ^10.3.0
+  flutter_cupertino_datetime_picker: ^3.0.0
 
 dev_dependencies:
   flutter_test:

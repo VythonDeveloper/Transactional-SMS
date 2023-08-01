@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cupertino_datetime_picker/flutter_cupertino_datetime_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:sms_bombing/SmsModel/centralBank.dart';
 import 'package:sms_bombing/SmsModel/csfBank.dart';
 import 'package:sms_bombing/SmsModel/federalBank.dart';
+import 'package:sms_bombing/SmsModel/flipkartPromt.dart';
+import 'package:sms_bombing/SmsModel/iciciBank.dart';
 import 'package:sms_bombing/SmsModel/kotakBank.dart';
+import 'package:sms_bombing/SmsModel/meeshoPromt.dart';
+import 'package:sms_bombing/SmsModel/pnbBank.dart';
+import 'package:sms_bombing/SmsModel/sbiBank.dart';
+import 'package:sms_bombing/SmsModel/swiggyPromt.dart';
 import 'package:sms_bombing/utils/constant.dart';
 import 'package:sms_bombing/screens/messageUI.dart';
 import 'package:sms_bombing/utils/components.dart';
@@ -13,23 +21,24 @@ import 'dart:async';
 import 'dart:math';
 import '../SmsModel/canaraBank.dart';
 import '../SmsModel/idfcBank.dart';
+import '../SmsModel/zomatoPromt.dart';
 
 // import 'dart:developer' as dev;
 
-class TransactionHomeUI extends StatefulWidget {
-  const TransactionHomeUI({super.key});
+class FuturePromotionHomeUI extends StatefulWidget {
+  const FuturePromotionHomeUI({super.key});
 
   @override
-  State<TransactionHomeUI> createState() => _TransactionHomeUIState();
+  State<FuturePromotionHomeUI> createState() => _FuturePromotionHomeUIState();
 }
 
-class _TransactionHomeUIState extends State<TransactionHomeUI> {
+class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
   List<dynamic> dateMasterList = [];
   List<dynamic> messagesList = [];
   Map<dynamic, dynamic> messageDictionary = {};
-  int monthRange = 122; //n months * 30 days
-  int otherDaySmsCount = 30;
+  int otherDaySmsCount = 50;
   int todaySmsCount = 100;
+  DateTime futureDate = new DateTime.now().add(Duration(days: 1));
 
   Random random = new Random();
   DateTime? currentBackPressTime;
@@ -40,6 +49,13 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
   late FederalBank federalBank;
   late IDFCBank idfcBank;
   late KotakBank kotakBank;
+  late SBIBank sbiBank;
+  late ICICIBank iciciBank;
+  late PnbBank pnbBank;
+  late ZomatoPromt zomatoPromt;
+  late MeeshoPromt meeshoPromt;
+  late SwiggyPromt swiggyPromt;
+  late FlipkartPromt flipkartPromt;
 
   @override
   void initState() {
@@ -47,6 +63,25 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       RandomMessageMaster();
     });
+  }
+
+  dateTimePickerWidget(BuildContext context) {
+    return DatePicker.showDatePicker(
+      context,
+      dateFormat: 'dd MMMM yyyy HH:mm',
+      initialDateTime: DateTime.now(),
+      minDateTime: DateTime.now(),
+      maxDateTime: DateTime.now().add(Duration(days: 300)),
+      onMonthChangeStartWithFirstDate: true,
+      onConfirm: (dateTime, List<int> index) {
+        futureDate = dateTime;
+        ShowSnackBar(context,
+            content: "Please wait generating new set of SMSes");
+        Timer(Duration(seconds: 2), () {
+          RandomMessageMaster();
+        });
+      },
+    );
   }
 
   Future<void> RandomMessageMaster() async {
@@ -64,13 +99,15 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
   }
 
   Future<void> generateRandomTimeMaster() async {
-    DateTime now = DateTime.now();
-
     //   This one is for other days
-    DateTime end = now.subtract(Duration(days: monthRange));
-    for (DateTime date = now.subtract(Duration(days: 1));
-        date.isAfter(end);
-        date = date.subtract(Duration(days: 1))) {
+    DateTime nowForOther = DateTime.now().add(Duration(days: 1));
+    DateTime startTime =
+        DateTime(nowForOther.year, nowForOther.month, nowForOther.day, 0, 5);
+    DateTime endTime = futureDate.add(Duration(days: 1));
+
+    for (DateTime date = startTime;
+        date.isBefore(endTime);
+        date = date.add(Duration(days: 1))) {
       List<DateTime> otherDaysRandomTimes = [];
       otherDaysRandomTimes = generateRandomTimesForOtherDays(
           startDate: date, smsCount: otherDaySmsCount);
@@ -81,8 +118,9 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
 
     //    This one is for current day
     List<DateTime> currentDayRandomTimes = [];
-    currentDayRandomTimes =
-        generateRandomTimesForToday(startDate: now, smsCount: todaySmsCount);
+    DateTime nowForToday = DateTime.now();
+    currentDayRandomTimes = generateRandomTimesForToday(
+        startDate: nowForToday, smsCount: todaySmsCount);
     currentDayRandomTimes.sort();
     currentDayRandomTimes = currentDayRandomTimes.reversed.toList();
     dateMasterList.insertAll(0, currentDayRandomTimes);
@@ -92,9 +130,8 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
       {required DateTime startDate, required int smsCount}) {
     List<DateTime> randomTimes = [];
     DateTime startTime =
-        DateTime(startDate.year, startDate.month, startDate.day, 6, 0);
-    DateTime endTime =
-        DateTime(startDate.year, startDate.month, startDate.day, 23, 49);
+        DateTime(startDate.year, startDate.month, startDate.day);
+    DateTime endTime = DateTime(startDate.year, startDate.month, startDate.day);
     while (randomTimes.length < smsCount) {
       DateTime newTime = generateRandomTime(startTime, endTime, random);
       randomTimes.add(newTime);
@@ -105,9 +142,9 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
   List<DateTime> generateRandomTimesForToday(
       {required DateTime startDate, required int smsCount}) {
     List<DateTime> randomTimes = [];
-    DateTime startTime =
-        DateTime(startDate.year, startDate.month, startDate.day, 6, 0);
-    DateTime endTime = startDate;
+    DateTime startTime = startDate;
+    DateTime endTime =
+        DateTime(startDate.year, startDate.month, startDate.day, 23, 55);
     int counter = 0;
     while (counter < smsCount) {
       counter += 1;
@@ -136,6 +173,13 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
     federalBank = new FederalBank();
     idfcBank = new IDFCBank();
     kotakBank = new KotakBank();
+    sbiBank = new SBIBank();
+    iciciBank = new ICICIBank();
+    pnbBank = new PnbBank();
+    zomatoPromt = new ZomatoPromt();
+    meeshoPromt = new MeeshoPromt();
+    swiggyPromt = new SwiggyPromt();
+    flipkartPromt = new FlipkartPromt();
 
     List txnTypeList = ['credit', 'debit'];
 
@@ -149,6 +193,13 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
         federalBank,
         idfcBank,
         kotakBank,
+        sbiBank,
+        iciciBank,
+        pnbBank,
+        zomatoPromt,
+        meeshoPromt,
+        swiggyPromt,
+        flipkartPromt
       ];
       smsFunctions.shuffle();
       var smsFormat = smsFunctions[Random().nextInt(smsFunctions.length)]
@@ -228,7 +279,7 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
       child: Scaffold(
         backgroundColor: Colors.grey.shade900,
         appBar: AppBar(
-          title: Text("Transaction SMS Bomb"),
+          title: Text("Future Prom. 24H SMS Bomb"),
           centerTitle: true,
         ),
         body: Padding(
@@ -241,11 +292,7 @@ class _TransactionHomeUIState extends State<TransactionHomeUI> {
               ),
               MaterialButton(
                 onPressed: () {
-                  ShowSnackBar(context,
-                      content: "Please wait generating new set of SMSes");
-                  Timer(Duration(seconds: 2), () {
-                    RandomMessageMaster();
-                  });
+                  dateTimePickerWidget(context);
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),
