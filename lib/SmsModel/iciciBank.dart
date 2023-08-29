@@ -5,8 +5,8 @@ class ICICIBank {
   Random random = new Random();
   // ICICI Bank Variables
   int account = 100; //3 digit
-  double balance = 50000;
-  List address = ['VD-ICICI'];
+  double balance = 30000;
+  List address = ['VD-ICICIB', 'TM-ICICIB', 'JD-ICICIB', 'VK-ICICIB'];
   List serviceNumbers = [
     '+911725199998',
     '+917012075009',
@@ -17,10 +17,12 @@ class ICICIBank {
       "We have credited your ICICI Bank Account XX022 with INR 5,067.00 on 25-Jul-23. Info:INF*INFT*033034767191*263956. The Available Balance is INR 5,441.71.";
   String creditSms =
       "ICICI Bank Account XX022 is credited with Rs 1,925.00 on 29-Jul-23 by Account linked to mobile number XXXXX56689. IMPS Ref. no. 321011467780.";
+  String sms3 =
+      "ICICI Bank Acct XX401 debited for Rs 550.00 on 26-Feb-23, Akash  credited. UPI:305786191668. Call 18002662 for dispute/SMS BLOCK 401 to 9215676766.";
 
   ICICIBank() {
     account = 100 + random.nextInt(1000 - 100);
-    balance = random.nextDouble() * 50000;
+    balance = random.nextDouble() * 30000;
   }
 
   Map<String, dynamic> generateSms(
@@ -29,7 +31,9 @@ class ICICIBank {
     DateTime txnDate = DateTime.fromMillisecondsSinceEpoch(millisecond);
     String formatTxnDate = DateFormat('dd-MMM-yyyy').format(txnDate);
 
-    if (random.nextInt(2) == 1) {
+    int whichSms = random.nextInt(2);
+
+    if (whichSms == 1) {
       int amount = 900 + random.nextInt(10000 - 900);
       balance = balance + amount;
       int randomUTR1 = 100000 + random.nextInt(1000000 - 100000);

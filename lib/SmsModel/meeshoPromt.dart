@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 class MeeshoPromt {
   Random random = new Random();
   // Meesho Bank Variables
-  int account = 1000; //4 digit
-  double balance = 1000000;
   List address = ['JM-MSHAPP'];
   List serviceNumbers = [
     '+911725199998',
@@ -24,7 +22,9 @@ class MeeshoPromt {
 
     int randomUid = 100000 + random.nextInt(1000000 - 100000);
 
-    if (random.nextInt(2) == 1) {
+    int whichSms = random.nextInt(2);
+
+    if (whichSms == 1) {
       smsBody =
           "Your product has been successfully delivered! We'd love to hear your feedback. Click here sprw.io/sntt-56192d?o_id=940281019&u_id=3" +
               randomUid.toString() +

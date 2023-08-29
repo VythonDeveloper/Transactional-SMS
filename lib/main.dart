@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sms_bombing/screens/FuturePromotionHomeUI.dart';
+import 'package:sms_bombing/screens/PromotionHomeUI.dart';
 import 'package:sms_bombing/utils/components.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.dark,
       darkTheme: ThemeData.dark(useMaterial3: true),
-      home: FuturePromotionHomeUI(),
+      home: Promotion24HomeUI(),
     );
   }
 }

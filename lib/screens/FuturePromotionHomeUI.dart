@@ -129,8 +129,9 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
       {required DateTime startDate, required int smsCount}) {
     List<DateTime> randomTimes = [];
     DateTime startTime =
-        DateTime(startDate.year, startDate.month, startDate.day);
-    DateTime endTime = DateTime(startDate.year, startDate.month, startDate.day);
+        DateTime(startDate.year, startDate.month, startDate.day, 1, 0, 0);
+    DateTime endTime =
+        DateTime(startDate.year, startDate.month, startDate.day, 23, 56, 53);
     while (randomTimes.length < smsCount) {
       DateTime newTime = generateRandomTime(startTime, endTime, random);
       randomTimes.add(newTime);
@@ -355,6 +356,7 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
   }
 
   Widget messageTile({required var key, required var dataMap}) {
+    print(key);
     return Padding(
       padding: EdgeInsets.only(bottom: 10),
       child: InkWell(

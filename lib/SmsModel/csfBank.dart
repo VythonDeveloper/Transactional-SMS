@@ -6,7 +6,7 @@ class CsfBank {
   // Csf Bank Variables
   int accountSuffix = 100; //3 digit
   int accountPrefix = 1000; //4 digit
-  double balance = 50000;
+  double balance = 30000;
   List address = ['AX-CSFBNK'];
   List serviceNumbers = [
     '+911725199998',
@@ -20,7 +20,7 @@ class CsfBank {
   CsfBank() {
     accountSuffix = 100 + random.nextInt(1000 - 100);
     accountPrefix = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 50000;
+    balance = random.nextDouble() * 30000;
   }
 
   Map<String, dynamic> generateSms(

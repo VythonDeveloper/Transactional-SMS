@@ -5,8 +5,8 @@ class PnbBank {
   Random random = new Random();
   // Pnb Bank Variables
   int account = 1000; //4 digit
-  double balance = 50000;
-  List address = ['VM-PNBSMS'];
+  double balance = 30000;
+  List address = ['VM-PNBSMS', 'VK-PNBSMS', 'AD-PNBSMS', 'AX-PNBSMS'];
   List serviceNumbers = [
     '+911725199998',
     '+917012075009',
@@ -18,7 +18,7 @@ class PnbBank {
 
   PnbBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 50000;
+    balance = random.nextDouble() * 30000;
   }
 
   Map<String, dynamic> generateSms(

@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 class SwiggyPromt {
   Random random = new Random();
   // Swiggy Bank Variables
-  int account = 1000; //4 digit
-  double balance = 1000000;
   List address = ['TX-SWIGGY'];
   List serviceNumbers = [
     '+911725199998',
@@ -24,7 +22,9 @@ class SwiggyPromt {
 
     int randomOTP = 100000 + random.nextInt(1000000 - 100000);
 
-    if (random.nextInt(2) == 1) {
+    int whichSms = random.nextInt(2);
+
+    if (whichSms == 1) {
       smsBody = "Use OTP " +
           randomOTP.toString() +
           " to log into your Swiggy account. Do not share the OTP or your number with anyone including Swiggy personnel. ASkSzFWMk3x";

@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 class FlipkartPromt {
   Random random = new Random();
   // Flipkart Bank Variables
-  int account = 1000; //4 digit
-  double balance = 50000;
   List address = ['JD-FLPKRT'];
   List serviceNumbers = [
     '+911725199998',
@@ -23,7 +21,9 @@ class FlipkartPromt {
       {required String txnType, required int millisecond}) {
     String smsBody = '';
 
-    if (random.nextInt(2) == 1) {
+    int whichSms = random.nextInt(2);
+
+    if (whichSms == 1) {
       smsBody =
           """Dear Customer, Did You Know? You can now get a Personal Loan up to Rs.5 Lakh* on Flipkart. Apply & get approval in just 30secs > 
       

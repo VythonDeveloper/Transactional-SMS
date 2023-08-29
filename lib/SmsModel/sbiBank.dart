@@ -5,8 +5,17 @@ class SBIBank {
   Random random = new Random();
   // SBI Bank Variables
   int account = 1000; //4 digit
-  double balance = 50000;
-  List address = ['BX-SBIPSG', 'BX-SBIINB'];
+  double balance = 30000;
+  List address = [
+    'BX-SBIPSG',
+    'BX-SBIINB',
+    'BW-SBIPSG',
+    'CP-SBIPSG',
+    'VK-SBIINB',
+    'AD-SBIPSG',
+    'AX-SBIINB',
+    'VM-SBIINB'
+  ];
   List serviceNumbers = [
     '+911725199998',
     '+917012075009',
@@ -17,10 +26,11 @@ class SBIBank {
       "Dear Customer, INR 54,315.00 credited to your A/c No XX5326 on 07/07/2023 through NEFT with UTR AXNFCN0270963545 by RESILIENT INNOVATIONS PRIVATE LIMIT, INFO: /CUST/ RESILIENT INNOVATIONS PRIVAT //E LIMITED- NODAL ACCOUNT-SBI";
   String creditSms =
       "Dear Customer, Your a/c no. XXXXXXXX5838 is credited by Rs.2395.00 on 29-07-23 by a/c linked to mobile 9XXXXXX999-GREEN WORLD (IMPS Ref no 321010642074).If not done by you, call 1800111109. -SBI";
-
+  String upiSms =
+      "Dear UPI user A/C X1975 debited by 201.0 on date 25Aug23 trf to Bharti Airtel Li Refno 360383045199. If not u? call 1800111109. -SBI";
   SBIBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 50000;
+    balance = random.nextDouble() * 30000;
   }
 
   Map<String, dynamic> generateSms(
@@ -28,7 +38,9 @@ class SBIBank {
     String smsBody = '';
     DateTime txnDate = DateTime.fromMillisecondsSinceEpoch(millisecond);
 
-    if (random.nextInt(2) == 1) {
+    int whichSms = random.nextInt(2);
+
+    if (whichSms == 1) {
       int amount = 900 + random.nextInt(10000 - 900);
       balance = balance + amount;
       String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
@@ -48,28 +60,58 @@ class SBIBank {
           randomUTR.toString() +
           " by RESILIENT INNOVATIONS PRIVATE LIMIT, INFO: /CUST/ RESILIENT INNOVATIONS PRIVAT //E LIMITED- NODAL ACCOUNT-SBI";
     } else {
-      int amount = 900 + random.nextInt(10000 - 900);
-      balance = balance + amount;
-      String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
-          "-" +
-          txnDate.month.toString().padLeft(2, '0') +
-          "-" +
-          txnDate.year.toString();
-      int randomPhone = 100 + random.nextInt(1000 - 100);
-      int randomUTR = 100000 + random.nextInt(1000000 - 100000);
-      smsBody = "Dear Customer, Your a/c no. XXXXXXXX" +
-          account.toString() +
-          " is credited by Rs." +
-          amount.toString() +
-          ".00 on " +
-          formatTxnDate +
-          " by a/c linked to mobile " +
-          (6 + random.nextInt(9 - 6)).toString() +
-          "XXXXXX" +
-          randomPhone.toString() +
-          "-GREEN WORLD (IMPS Ref no 321010" +
-          randomUTR.toString() +
-          ").If not done by you, call 1800111109. -SBI";
+      int amount = 50 + random.nextInt(5000 - 50);
+      if (amount < balance) {
+        balance = balance - amount;
+
+        String formatTxnDate = DateFormat('ddMMMyy').format(txnDate);
+        int randomUTR1 = 10000 + random.nextInt(100000 - 10000);
+        int randomUTR2 = 100000 + random.nextInt(1000000 - 100000);
+        List recipient = [
+          "Bharti Airtel Li",
+          "Vodafone Idea",
+          "Jio",
+          "Ramesh",
+          "Akhil",
+          "Bhavna"
+        ];
+        smsBody = "Dear UPI user A/C X" +
+            account.toString() +
+            " debited by " +
+            amount.toString() +
+            ".0 on date " +
+            formatTxnDate +
+            " trf to " +
+            recipient[random.nextInt(recipient.length)] +
+            " Refno 3" +
+            randomUTR1.toString() +
+            "" +
+            randomUTR2.toString() +
+            ". If not u? call 1800111109. -SBI";
+      } else {
+        int amount = 900 + random.nextInt(10000 - 900);
+        balance = balance + amount;
+        String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
+            "-" +
+            txnDate.month.toString().padLeft(2, '0') +
+            "-" +
+            txnDate.year.toString();
+        int randomPhone = 100 + random.nextInt(1000 - 100);
+        int randomUTR = 100000 + random.nextInt(1000000 - 100000);
+        smsBody = "Dear Customer, Your a/c no. XXXXXXXX" +
+            account.toString() +
+            " is credited by Rs." +
+            amount.toString() +
+            ".00 on " +
+            formatTxnDate +
+            " by a/c linked to mobile " +
+            (6 + random.nextInt(9 - 6)).toString() +
+            "XXXXXX" +
+            randomPhone.toString() +
+            "-GREEN WORLD (IMPS Ref no 321010" +
+            randomUTR.toString() +
+            ").If not done by you, call 1800111109. -SBI";
+      }
     }
 
     return {

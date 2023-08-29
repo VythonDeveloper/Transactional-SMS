@@ -4,8 +4,6 @@ import 'package:intl/intl.dart';
 class ZomatoPromt {
   Random random = new Random();
   // Kotak Bank Variables
-  int account = 1000; //4 digit
-  double balance = 1000000;
   List address = ['TM-ZOMATO'];
   List serviceNumbers = [
     '+911725199998',

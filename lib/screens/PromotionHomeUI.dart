@@ -106,8 +106,9 @@ class _Promotion24HomeUIState extends State<Promotion24HomeUI> {
       {required DateTime startDate, required int smsCount}) {
     List<DateTime> randomTimes = [];
     DateTime startTime =
-        DateTime(startDate.year, startDate.month, startDate.day);
-    DateTime endTime = DateTime(startDate.year, startDate.month, startDate.day);
+        DateTime(startDate.year, startDate.month, startDate.day, 0, 10, 8);
+    DateTime endTime =
+        DateTime(startDate.year, startDate.month, startDate.day, 23, 56, 53);
     while (randomTimes.length < smsCount) {
       DateTime newTime = generateRandomTime(startTime, endTime, random);
       randomTimes.add(newTime);
