@@ -1,7 +1,8 @@
 name: sms_bombing
-description: Future Promotion 24H SMS Bomb
+description: All type 24H SMS Bomb
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
-version: 1.0.6+7
+# version: 2.0.0+20 # For Promotional 24H SMS Bomb
+version: 3.0.0+30 # For Future Promotional 24H SMS Bomb
 
 environment:
   sdk: ">=2.19.6 <3.0.0"

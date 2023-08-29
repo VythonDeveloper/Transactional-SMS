@@ -279,7 +279,7 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
       child: Scaffold(
         backgroundColor: Colors.grey.shade900,
         appBar: AppBar(
-          title: Text("Future Prom. 24H SMS Bomb"),
+          title: Text("Future Promotional 24H SMS Bomb"),
           centerTitle: true,
         ),
         body: Padding(

@@ -264,7 +264,7 @@ class _Promotion24HomeUIState extends State<Promotion24HomeUI> {
       child: Scaffold(
         backgroundColor: Colors.grey.shade900,
         appBar: AppBar(
-          title: Text("Promotion 24H SMS Bomb"),
+          title: Text("Promotional 24H SMS Bomb"),
           centerTitle: true,
         ),
         body: Padding(
