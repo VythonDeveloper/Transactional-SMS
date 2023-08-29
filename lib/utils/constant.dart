@@ -78,6 +78,22 @@ Map<String, String> bankIcon = {
   'VK-ICICIB':
       'https://pbs.twimg.com/profile_images/1477924435969462272/ZQADGPv5_400x400.png',
 
+  // paytm bank
+
+  'VW-PAYTMB':
+      'https://1000logos.net/wp-content/uploads/2021/03/paytm_tumb-1.jpg',
+  'BZ-PAYTMB':
+      'https://1000logos.net/wp-content/uploads/2021/03/paytm_tumb-1.jpg',
+
+  //hdfc bank
+
+  'VM-HDFCBK':
+      'https://companieslogo.com/img/orig/HDB-bb6241fe.png?t=1633497370',
+  'TM-HDFCBK':
+      'https://companieslogo.com/img/orig/HDB-bb6241fe.png?t=1633497370',
+  'JK-HDFCBK':
+      'https://companieslogo.com/img/orig/HDB-bb6241fe.png?t=1633497370',
+
   // flipkart
   'JD-FLPKRT':
       'https://i.pinimg.com/originals/aa/70/8d/aa708d1f97a04f6f5a208213f89e1e67.png',

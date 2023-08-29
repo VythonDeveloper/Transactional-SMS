@@ -3,6 +3,7 @@ import 'package:sms_bombing/SmsModel/centralBank.dart';
 import 'package:sms_bombing/SmsModel/csfBank.dart';
 import 'package:sms_bombing/SmsModel/federalBank.dart';
 import 'package:sms_bombing/SmsModel/flipkartPromt.dart';
+import 'package:sms_bombing/SmsModel/hdfcBank.dart';
 import 'package:sms_bombing/SmsModel/iciciBank.dart';
 import 'package:sms_bombing/SmsModel/kotakBank.dart';
 import 'package:sms_bombing/SmsModel/meeshoPromt.dart';
@@ -19,6 +20,7 @@ import 'dart:async';
 import 'dart:math';
 import '../SmsModel/canaraBank.dart';
 import '../SmsModel/idfcBank.dart';
+import '../SmsModel/paytmBank.dart';
 import '../SmsModel/zomatoPromt.dart';
 
 // import 'dart:developer' as dev;
@@ -50,6 +52,8 @@ class _Promotion24HomeUIState extends State<Promotion24HomeUI> {
   late SBIBank sbiBank;
   late ICICIBank iciciBank;
   late PnbBank pnbBank;
+  late PaytmBank paytmBank;
+  late HDFCBank hdfcBank;
   late ZomatoPromt zomatoPromt;
   late MeeshoPromt meeshoPromt;
   late SwiggyPromt swiggyPromt;
@@ -153,6 +157,8 @@ class _Promotion24HomeUIState extends State<Promotion24HomeUI> {
     sbiBank = new SBIBank();
     iciciBank = new ICICIBank();
     pnbBank = new PnbBank();
+    paytmBank = new PaytmBank();
+    hdfcBank = new HDFCBank();
     zomatoPromt = new ZomatoPromt();
     meeshoPromt = new MeeshoPromt();
     swiggyPromt = new SwiggyPromt();
@@ -173,6 +179,8 @@ class _Promotion24HomeUIState extends State<Promotion24HomeUI> {
         sbiBank,
         iciciBank,
         pnbBank,
+        paytmBank,
+        hdfcBank,
         zomatoPromt,
         meeshoPromt,
         swiggyPromt,

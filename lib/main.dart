@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:sms_bombing/screens/FuturePromotionHomeUI.dart';
 import 'package:sms_bombing/screens/PromotionHomeUI.dart';
 import 'package:sms_bombing/utils/components.dart';
 

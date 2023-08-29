@@ -33,48 +33,73 @@ class ICICIBank {
 
     int whichSms = random.nextInt(2);
 
-    if (whichSms == 1) {
-      int amount = 900 + random.nextInt(10000 - 900);
-      balance = balance + amount;
-      int randomUTR1 = 100000 + random.nextInt(1000000 - 100000);
+    if (txnType.toLowerCase() == 'debit') {
+      int amount = 50 + random.nextInt(1000 - 50);
+      String formatTxnDate = DateFormat('dd-MMMM-yy').format(txnDate);
+      int randomUTR1 = 10000 + random.nextInt(100000 - 10000);
       int randomUTR2 = 100000 + random.nextInt(1000000 - 100000);
-      int randomUTR3 = 100000 + random.nextInt(1000000 - 100000);
+      if (amount < balance) {
+        balance = balance - amount;
+        smsBody = "ICICI Bank Acct XX" +
+            account.toString() +
+            " debited for Rs " +
+            amount.toStringAsFixed(2) +
+            " on " +
+            formatTxnDate +
+            ", Akash  credited. UPI:3" +
+            randomUTR1.toString() +
+            "" +
+            randomUTR2.toString() +
+            ". Call 18002662 for dispute/SMS BLOCK 401 to 9215676766.";
+      } else {
+        txnType = 'credit';
+      }
+    }
 
-      smsBody = "We have credited your ICICI Bank Account XX" +
-          account.toString() +
-          " with INR " +
-          amount.toString() +
-          ".00 on " +
-          formatTxnDate +
-          ". Info:INF*INFT*" +
-          randomUTR1.toString() +
-          "" +
-          randomUTR2.toString() +
-          "*" +
-          randomUTR3.toString() +
-          ". The Available Balance is INR " +
-          balance.toStringAsFixed(2) +
-          ".";
-    } else {
-      int amount = 900 + random.nextInt(10000 - 900);
-      balance = balance + amount;
+    if (txnType.toLowerCase() == "credit") {
+      if (whichSms == 1) {
+        int amount = 900 + random.nextInt(10000 - 900);
+        balance = balance + amount;
+        int randomUTR1 = 100000 + random.nextInt(1000000 - 100000);
+        int randomUTR2 = 100000 + random.nextInt(1000000 - 100000);
+        int randomUTR3 = 100000 + random.nextInt(1000000 - 100000);
 
-      int randomPhone = 10000 + random.nextInt(100000 - 10000);
-      int randomUTR1 = 1000 + random.nextInt(10000 - 1000);
-      int randomUTR2 = 100000 + random.nextInt(1000000 - 100000);
-      smsBody = "ICICI Bank Account XX" +
-          account.toString() +
-          " is credited with Rs " +
-          amount.toString() +
-          ".00 on " +
-          formatTxnDate +
-          " by Account linked to mobile number XXXXX" +
-          randomPhone.toString() +
-          ". IMPS Ref. no. 3" +
-          randomUTR1.toString() +
-          "1" +
-          randomUTR2.toString() +
-          ".";
+        smsBody = "We have credited your ICICI Bank Account XX" +
+            account.toString() +
+            " with INR " +
+            amount.toString() +
+            ".00 on " +
+            formatTxnDate +
+            ". Info:INF*INFT*" +
+            randomUTR1.toString() +
+            "" +
+            randomUTR2.toString() +
+            "*" +
+            randomUTR3.toString() +
+            ". The Available Balance is INR " +
+            balance.toStringAsFixed(2) +
+            ".";
+      } else {
+        int amount = 900 + random.nextInt(10000 - 900);
+        balance = balance + amount;
+
+        int randomPhone = 10000 + random.nextInt(100000 - 10000);
+        int randomUTR1 = 1000 + random.nextInt(10000 - 1000);
+        int randomUTR2 = 100000 + random.nextInt(1000000 - 100000);
+        smsBody = "ICICI Bank Account XX" +
+            account.toString() +
+            " is credited with Rs " +
+            amount.toString() +
+            ".00 on " +
+            formatTxnDate +
+            " by Account linked to mobile number XXXXX" +
+            randomPhone.toString() +
+            ". IMPS Ref. no. 3" +
+            randomUTR1.toString() +
+            "1" +
+            randomUTR2.toString() +
+            ".";
+      }
     }
 
     return {
