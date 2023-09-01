@@ -26,7 +26,6 @@ Map<String, String> bankIcon = {
       'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
   'JM-ONJPTR':
       'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
-
   'JD-FedFiB':
       'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
   'AD-FedFiB':
@@ -36,6 +35,18 @@ Map<String, String> bankIcon = {
   'AX-FedFiB':
       'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
   'JM-FedFiB':
+      'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
+  'JD-FEDBNK':
+      'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
+  'AD-FEDBNK':
+      'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
+  'VM-FEDBNK':
+      'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
+  'BP-FEDBNK':
+      'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
+  'AX-FEDBNK':
+      'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
+  'JM-FEDBNK':
       'https://apprecs.org/gp/images/app-icons/300/14/com.fedmobile.jpg',
 
   // idfc bank
@@ -57,6 +68,13 @@ Map<String, String> bankIcon = {
   'AD-SBIPSG': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
   'AX-SBIINB': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
   'VM-SBIINB': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
+  'BW-SBIUPI': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
+  'BX-SBIUPI': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
+  'CP-SBIUPI': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
+  'VK-SBIUPI': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
+  'AD-SBIUPI': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
+  'AX-SBIUPI': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
+  'VM-SBIUPI': 'https://cetking.com/wp-content/uploads/2016/08/images-3.jpg',
 
   // pnb bank
   'VM-PNBSMS':

@@ -16,6 +16,16 @@ class SBIBank {
     'AX-SBIINB',
     'VM-SBIINB'
   ];
+
+  List upiAddress = [
+    'BW-SBIUPI',
+    'BX-SBIUPI',
+    'CP-SBIUPI',
+    'VK-SBIUPI',
+    'AD-SBIUPI',
+    'AX-SBIUPI',
+    'VM-SBIUPI'
+  ];
   List serviceNumbers = [
     '+911725199998',
     '+917012075009',
@@ -30,7 +40,7 @@ class SBIBank {
       "Dear UPI user A/C X1975 debited by 201.0 on date 25Aug23 trf to Bharti Airtel Li Refno 360383045199. If not u? call 1800111109. -SBI";
   SBIBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
   }
 
   Map<String, dynamic> generateSms(
@@ -38,9 +48,11 @@ class SBIBank {
     String smsBody = '';
     DateTime txnDate = DateTime.fromMillisecondsSinceEpoch(millisecond);
 
+    String smsAddress = '';
     int whichSms = random.nextInt(2);
 
     if (whichSms == 1) {
+      smsAddress = address[random.nextInt(address.length)];
       int amount = 900 + random.nextInt(10000 - 900);
       balance = balance + amount;
       String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
@@ -51,8 +63,8 @@ class SBIBank {
       int randomUTR = 100000 + random.nextInt(1000000 - 100000);
 
       smsBody = "Dear Customer, INR " +
-          amount.toString() +
-          ".00 credited to your A/c No XX" +
+          amount.toStringAsFixed(2) +
+          " credited to your A/c No XX" +
           account.toString() +
           " on " +
           formatTxnDate +
@@ -60,6 +72,7 @@ class SBIBank {
           randomUTR.toString() +
           " by RESILIENT INNOVATIONS PRIVATE LIMIT, INFO: /CUST/ RESILIENT INNOVATIONS PRIVAT //E LIMITED- NODAL ACCOUNT-SBI";
     } else {
+      smsAddress = upiAddress[random.nextInt(upiAddress.length)];
       int amount = 50 + random.nextInt(5000 - 50);
       if (amount < balance) {
         balance = balance - amount;
@@ -78,8 +91,8 @@ class SBIBank {
         smsBody = "Dear UPI user A/C X" +
             account.toString() +
             " debited by " +
-            amount.toString() +
-            ".0 on date " +
+            amount.toStringAsFixed(1) +
+            " on date " +
             formatTxnDate +
             " trf to " +
             recipient[random.nextInt(recipient.length)] +
@@ -101,8 +114,8 @@ class SBIBank {
         smsBody = "Dear Customer, Your a/c no. XXXXXXXX" +
             account.toString() +
             " is credited by Rs." +
-            amount.toString() +
-            ".00 on " +
+            amount.toStringAsFixed(2) +
+            " on " +
             formatTxnDate +
             " by a/c linked to mobile " +
             (6 + random.nextInt(9 - 6)).toString() +
@@ -116,7 +129,7 @@ class SBIBank {
 
     return {
       "_protocol": "0",
-      "_address": address[random.nextInt(address.length)],
+      "_address": smsAddress,
       "_date": millisecond.toString(),
       "_type": "1",
       "_subject": "null",

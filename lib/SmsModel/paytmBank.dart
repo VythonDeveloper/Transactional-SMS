@@ -13,7 +13,7 @@ class PaytmBank {
 
   PaytmBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
   }
 
   Map<String, dynamic> generateSms(

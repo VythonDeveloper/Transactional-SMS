@@ -18,7 +18,7 @@ class KotakBank {
 
   KotakBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
   }
 
   Map<String, dynamic> generateSms(
@@ -27,7 +27,7 @@ class KotakBank {
     DateTime txnDate = DateTime.fromMillisecondsSinceEpoch(millisecond);
     String formatTxnDate = DateFormat('dd-MMM-yyyy').format(txnDate);
 
-    int amount = 1000 + random.nextInt(10000 - 1000);
+    int amount = 50 + random.nextInt(4300 - 50);
     balance = balance + amount;
     smsBody = "High five! Payment of INR " +
         amount.toStringAsFixed(0) +

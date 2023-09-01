@@ -29,7 +29,7 @@ class CanaraBank {
 
   CanaraBank() {
     account = 100 + random.nextInt(1000 - 100);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
   }
 
   Map<String, dynamic> generateSms(
@@ -43,7 +43,7 @@ class CanaraBank {
         txnDate.year.toString();
 
     if (txnType.toLowerCase() == 'debit') {
-      int amount = 100 + random.nextInt(1000 - 100);
+      int amount = 50 + random.nextInt(5100 - 50);
       if (amount < balance) {
         balance = balance - amount;
         smsBody = "An amount of INR " +
@@ -62,7 +62,7 @@ class CanaraBank {
 
     if (txnType.toLowerCase() == "credit") {
       if (random.nextInt(2) == 1) {
-        int amount = 1000 + random.nextInt(10000 - 1000);
+        int amount = 50 + random.nextInt(4300 - 50);
         balance = balance + amount;
         smsBody = "An amount of INR " +
             amount.toStringAsFixed(2) +
@@ -99,8 +99,8 @@ class CanaraBank {
         smsBody = "Your A/c No:XX" +
             account.toString() +
             " has been credited with Rs." +
-            amount.toString() +
-            ".00 on " +
+            amount.toStringAsFixed(2) +
+            " on " +
             formatTxnDate +
             " from UPI-ID " +
             upis[random.nextInt(upis.length)] +

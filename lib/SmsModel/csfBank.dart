@@ -20,7 +20,7 @@ class CsfBank {
   CsfBank() {
     accountSuffix = 100 + random.nextInt(1000 - 100);
     accountPrefix = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
   }
 
   Map<String, dynamic> generateSms(
@@ -30,7 +30,7 @@ class CsfBank {
     String formatTxnDate = DateFormat('dd-MMM-yyyy').format(txnDate);
 
     if (txnType.toLowerCase() == 'debit') {
-      int amount = 100 + random.nextInt(10000 - 100);
+      int amount = 100 + random.nextInt(5100 - 100);
       if (amount < balance) {
         balance = balance - amount;
         smsBody = "Your A/c " +
@@ -50,7 +50,7 @@ class CsfBank {
     }
 
     if (txnType.toLowerCase() == "credit") {
-      int amount = 1000 + random.nextInt(10000 - 1000);
+      int amount = 50 + random.nextInt(4300 - 50);
       balance = balance + amount;
       smsBody = "Your A/c " +
           accountSuffix.toString() +

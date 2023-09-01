@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cupertino_datetime_picker/flutter_cupertino_datetime_picker.dart';
 import 'package:sms_bombing/SmsModel/centralBank.dart';
-import 'package:sms_bombing/SmsModel/csfBank.dart';
 import 'package:sms_bombing/SmsModel/federalBank.dart';
-import 'package:sms_bombing/SmsModel/flipkartPromt.dart';
+import 'package:sms_bombing/SmsModel/hdfcBank.dart';
 import 'package:sms_bombing/SmsModel/iciciBank.dart';
 import 'package:sms_bombing/SmsModel/kotakBank.dart';
-import 'package:sms_bombing/SmsModel/meeshoPromt.dart';
 import 'package:sms_bombing/SmsModel/pnbBank.dart';
 import 'package:sms_bombing/SmsModel/sbiBank.dart';
-import 'package:sms_bombing/SmsModel/swiggyPromt.dart';
 import 'package:sms_bombing/utils/constant.dart';
 import 'package:sms_bombing/screens/messageUI.dart';
 import 'package:sms_bombing/utils/components.dart';
@@ -20,41 +16,36 @@ import 'dart:async';
 import 'dart:math';
 import '../SmsModel/canaraBank.dart';
 import '../SmsModel/idfcBank.dart';
-import '../SmsModel/zomatoPromt.dart';
+import '../SmsModel/paytmBank.dart';
 
 // import 'dart:developer' as dev;
 
-class FuturePromotionHomeUI extends StatefulWidget {
-  const FuturePromotionHomeUI({super.key});
+class Transactional24HHomeUI extends StatefulWidget {
+  const Transactional24HHomeUI({super.key});
 
   @override
-  State<FuturePromotionHomeUI> createState() => _FuturePromotionHomeUIState();
+  State<Transactional24HHomeUI> createState() => _Transactional24HHomeUIState();
 }
 
-class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
+class _Transactional24HHomeUIState extends State<Transactional24HHomeUI> {
   List<dynamic> dateMasterList = [];
   List<dynamic> messagesList = [];
   Map<dynamic, dynamic> messageDictionary = {};
-  int otherDaySmsCount = 50;
-  int todaySmsCount = 100;
-  DateTime futureDate = new DateTime.now().add(Duration(days: 1));
+  int monthRange = 900; //n months * 30 days
 
   Random random = new Random();
   DateTime? currentBackPressTime;
   bool isLoading = false;
   late CanaraBank canaraBank;
   late CentralBank centralBank;
-  late CsfBank csfBank;
   late FederalBank federalBank;
   late IDFCBank idfcBank;
   late KotakBank kotakBank;
   late SBIBank sbiBank;
   late ICICIBank iciciBank;
   late PnbBank pnbBank;
-  late ZomatoPromt zomatoPromt;
-  late MeeshoPromt meeshoPromt;
-  late SwiggyPromt swiggyPromt;
-  late FlipkartPromt flipkartPromt;
+  late PaytmBank paytmBank;
+  late HDFCBank hdfcBank;
 
   @override
   void initState() {
@@ -62,25 +53,6 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       RandomMessageMaster();
     });
-  }
-
-  dateTimePickerWidget(BuildContext context) {
-    return DatePicker.showDatePicker(
-      context,
-      dateFormat: 'dd MMMM yyyy HH:mm',
-      initialDateTime: DateTime.now(),
-      minDateTime: DateTime.now(),
-      maxDateTime: DateTime.now().add(Duration(days: 300)),
-      onMonthChangeStartWithFirstDate: true,
-      onConfirm: (dateTime, List<int> index) {
-        futureDate = dateTime;
-        ShowSnackBar(context,
-            content: "Please wait generating new set of SMSes");
-        Timer(Duration(seconds: 2), () {
-          RandomMessageMaster();
-        });
-      },
-    );
   }
 
   Future<void> RandomMessageMaster() async {
@@ -98,18 +70,16 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
   }
 
   Future<void> generateRandomTimeMaster() async {
-    //   This one is for other days
-    DateTime nowForOther = DateTime.now().add(Duration(days: 1));
-    DateTime startTime =
-        DateTime(nowForOther.year, nowForOther.month, nowForOther.day, 0, 5);
-    DateTime endTime = futureDate.add(Duration(days: 1));
+    DateTime now = DateTime.now();
 
-    for (DateTime date = startTime;
-        date.isBefore(endTime);
-        date = date.add(Duration(days: 1))) {
+    //   This one is for other days
+    DateTime end = now.subtract(Duration(days: monthRange));
+    for (DateTime date = now.subtract(Duration(days: 1));
+        date.isAfter(end);
+        date = date.subtract(Duration(days: 1))) {
       List<DateTime> otherDaysRandomTimes = [];
       otherDaysRandomTimes = generateRandomTimesForOtherDays(
-          startDate: date, smsCount: otherDaySmsCount);
+          startDate: date, smsCount: random.nextInt(10));
       otherDaysRandomTimes.sort();
       otherDaysRandomTimes = otherDaysRandomTimes.reversed.toList();
       dateMasterList.addAll(otherDaysRandomTimes);
@@ -117,9 +87,8 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
 
     //    This one is for current day
     List<DateTime> currentDayRandomTimes = [];
-    DateTime nowForToday = DateTime.now();
     currentDayRandomTimes = generateRandomTimesForToday(
-        startDate: nowForToday, smsCount: todaySmsCount);
+        startDate: now, smsCount: random.nextInt(11));
     currentDayRandomTimes.sort();
     currentDayRandomTimes = currentDayRandomTimes.reversed.toList();
     dateMasterList.insertAll(0, currentDayRandomTimes);
@@ -129,9 +98,9 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
       {required DateTime startDate, required int smsCount}) {
     List<DateTime> randomTimes = [];
     DateTime startTime =
-        DateTime(startDate.year, startDate.month, startDate.day, 1, 0, 0);
+        DateTime(startDate.year, startDate.month, startDate.day, 0, 5, 5);
     DateTime endTime =
-        DateTime(startDate.year, startDate.month, startDate.day, 23, 56, 53);
+        DateTime(startDate.year, startDate.month, startDate.day, 23, 57, 5);
     while (randomTimes.length < smsCount) {
       DateTime newTime = generateRandomTime(startTime, endTime, random);
       randomTimes.add(newTime);
@@ -142,9 +111,9 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
   List<DateTime> generateRandomTimesForToday(
       {required DateTime startDate, required int smsCount}) {
     List<DateTime> randomTimes = [];
-    DateTime startTime = startDate;
-    DateTime endTime =
-        DateTime(startDate.year, startDate.month, startDate.day, 23, 55);
+    DateTime startTime =
+        DateTime(startDate.year, startDate.month, startDate.day, 0, 5);
+    DateTime endTime = startDate;
     int counter = 0;
     while (counter < smsCount) {
       counter += 1;
@@ -169,17 +138,14 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
   Future<void> generateSMSMaster() async {
     canaraBank = new CanaraBank();
     centralBank = new CentralBank();
-    csfBank = new CsfBank();
     federalBank = new FederalBank();
     idfcBank = new IDFCBank();
     kotakBank = new KotakBank();
     sbiBank = new SBIBank();
     iciciBank = new ICICIBank();
     pnbBank = new PnbBank();
-    zomatoPromt = new ZomatoPromt();
-    meeshoPromt = new MeeshoPromt();
-    swiggyPromt = new SwiggyPromt();
-    flipkartPromt = new FlipkartPromt();
+    paytmBank = new PaytmBank();
+    hdfcBank = new HDFCBank();
 
     List txnTypeList = ['credit', 'debit'];
 
@@ -189,17 +155,14 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
       List<dynamic> smsFunctions = [
         canaraBank,
         centralBank,
-        csfBank,
         federalBank,
         idfcBank,
         kotakBank,
         sbiBank,
         iciciBank,
         pnbBank,
-        zomatoPromt,
-        meeshoPromt,
-        swiggyPromt,
-        flipkartPromt
+        paytmBank,
+        hdfcBank
       ];
       smsFunctions.shuffle();
       var smsFormat = smsFunctions[Random().nextInt(smsFunctions.length)]
@@ -279,7 +242,7 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
       child: Scaffold(
         backgroundColor: Colors.grey.shade900,
         appBar: AppBar(
-          title: Text("Future Promotional 24H SMS Bomb"),
+          title: Text("Transactional 24H SMS Bomb"),
           centerTitle: true,
         ),
         body: Padding(
@@ -292,7 +255,11 @@ class _FuturePromotionHomeUIState extends State<FuturePromotionHomeUI> {
               ),
               MaterialButton(
                 onPressed: () {
-                  dateTimePickerWidget(context);
+                  ShowSnackBar(context,
+                      content: "Please wait generating new set of SMSes");
+                  Timer(Duration(seconds: 2), () {
+                    RandomMessageMaster();
+                  });
                 },
                 child: Container(
                   padding: EdgeInsets.all(10),

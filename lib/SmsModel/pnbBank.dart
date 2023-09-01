@@ -19,7 +19,7 @@ class PnbBank {
       "A/c XX2003 debited INR 38.00 Dt 08-07-23 16:16 thru UPI:355525677659.Bal INR 1.86 Not u?Fwd this SMS to 9264092640 to block UPI.Download PNB ONE-PNB";
   PnbBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
   }
 
   Map<String, dynamic> generateSms(
@@ -28,7 +28,7 @@ class PnbBank {
     DateTime txnDate = DateTime.fromMillisecondsSinceEpoch(millisecond);
 
     if (txnType.toLowerCase() == 'debit') {
-      int amount = 100 + random.nextInt(1000 - 100);
+      int amount = 50 + random.nextInt(5100 - 50);
       String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
           "-" +
           txnDate.month.toString().padLeft(2, '0') +
@@ -79,8 +79,8 @@ class PnbBank {
       smsBody = "Ac XXXXXXXX" +
           account.toString() +
           " Credited with Rs." +
-          amount.toString() +
-          ".00," +
+          amount.toStringAsFixed(2) +
+          "," +
           formatTxnDate +
           " thru NEFT from PHONEPE PRIVATE LIMITED -PAYMEN. Aval Bal " +
           balance.toStringAsFixed(2) +

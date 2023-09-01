@@ -17,6 +17,15 @@ class FederalBank {
     'AX-FedFiB',
     'JM-FedFiB'
   ];
+
+  List upiAddress = [
+    'JD-FEDBNK',
+    'AD-FEDBNK',
+    'VM-FEDBNK',
+    'BP-FEDBNK',
+    'AX-FEDBNK',
+    'JM-FEDBNK'
+  ];
   List serviceNumbers = [
     '+911725199998',
     '+917012075009',
@@ -31,7 +40,7 @@ class FederalBank {
       "Rs 1.00 debited from your A/c using UPI on 27-08-2023 19:19:01 to VPA appolaau@ybl - (UPI Ref No 323919976089)-Federal Bank";
   FederalBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
     List randomNames = [
       'Abhinav',
       'Bhaskar',
@@ -88,12 +97,14 @@ class FederalBank {
     String formatTxnDate = DateFormat('MMMM dd, yyyy').format(txnDate);
 
     int randomNumber = 1000 + random.nextInt(10000 - 1000);
-    int amount = 1000 + random.nextInt(10000 - 1000);
+    int amount = 50 + random.nextInt(4300 - 50);
     balance = balance + amount;
 
-    int whichSms = random.nextInt(3);
+    String smsAddress = '';
 
     if (txnType.toLowerCase() == 'debit') {
+      smsAddress = upiAddress[random.nextInt(upiAddress.length)];
+
       int amount = 50 + random.nextInt(800 - 50);
       String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
           "-" +
@@ -133,7 +144,9 @@ class FederalBank {
       }
     }
 
+    int whichSms = random.nextInt(2);
     if (txnType.toLowerCase() == "credit") {
+      smsAddress = address[random.nextInt(address.length)];
       if (whichSms == 1) {
         smsBody = name +
             ", you've received INR " +
@@ -156,7 +169,7 @@ class FederalBank {
 
     return {
       "_protocol": "0",
-      "_address": address[random.nextInt(address.length)],
+      "_address": smsAddress,
       "_date": millisecond.toString(),
       "_type": "1",
       "_subject": "null",

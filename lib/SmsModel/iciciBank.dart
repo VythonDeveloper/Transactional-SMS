@@ -22,7 +22,7 @@ class ICICIBank {
 
   ICICIBank() {
     account = 100 + random.nextInt(1000 - 100);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
   }
 
   Map<String, dynamic> generateSms(
@@ -34,7 +34,7 @@ class ICICIBank {
     int whichSms = random.nextInt(2);
 
     if (txnType.toLowerCase() == 'debit') {
-      int amount = 50 + random.nextInt(1000 - 50);
+      int amount = 50 + random.nextInt(5100 - 50);
       String formatTxnDate = DateFormat('dd-MMMM-yy').format(txnDate);
       int randomUTR1 = 10000 + random.nextInt(100000 - 10000);
       int randomUTR2 = 100000 + random.nextInt(1000000 - 100000);
@@ -67,8 +67,8 @@ class ICICIBank {
         smsBody = "We have credited your ICICI Bank Account XX" +
             account.toString() +
             " with INR " +
-            amount.toString() +
-            ".00 on " +
+            amount.toStringAsFixed(2) +
+            " on " +
             formatTxnDate +
             ". Info:INF*INFT*" +
             randomUTR1.toString() +
@@ -89,8 +89,8 @@ class ICICIBank {
         smsBody = "ICICI Bank Account XX" +
             account.toString() +
             " is credited with Rs " +
-            amount.toString() +
-            ".00 on " +
+            amount.toStringAsFixed(2) +
+            " on " +
             formatTxnDate +
             " by Account linked to mobile number XXXXX" +
             randomPhone.toString() +

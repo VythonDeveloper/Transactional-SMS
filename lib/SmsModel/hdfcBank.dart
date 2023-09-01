@@ -13,7 +13,7 @@ class HDFCBank {
 
   HDFCBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
   }
 
   Map<String, dynamic> generateSms(
@@ -27,7 +27,7 @@ class HDFCBank {
         txnDate.year.toString();
 
     if (txnType.toLowerCase() == 'debit') {
-      int amount = 100 + random.nextInt(10000 - 100);
+      int amount = 100 + random.nextInt(5100 - 100);
       if (amount < balance) {
         balance = balance - amount;
         List upis = [
@@ -59,7 +59,7 @@ class HDFCBank {
     }
 
     if (txnType.toLowerCase() == "credit") {
-      int amount = 1000 + random.nextInt(10000 - 1000);
+      int amount = 50 + random.nextInt(4300 - 50);
       balance = balance + amount;
       smsBody = "HDFC Bank: Rs 5000.00 credited to a/c **" +
           account.toString() +

@@ -20,7 +20,7 @@ class CentralBank {
 
   CentralBank() {
     account = 1000 + random.nextInt(10000 - 1000);
-    balance = random.nextDouble() * 30000;
+    balance = random.nextDouble() * 8000;
   }
 
   Map<String, dynamic> generateSms(
@@ -28,13 +28,13 @@ class CentralBank {
     String smsBody = '';
 
     if (txnType.toLowerCase() == 'debit') {
-      int amount = 100 + random.nextInt(1000 - 100);
+      int amount = 50 + random.nextInt(5100 - 50);
       if (amount < balance) {
         balance = balance - amount;
         smsBody = "A/c 3XXXXX" +
             account.toString() +
             " debited by Rs. " +
-            amount.toString() +
+            amount.toStringAsFixed(2) +
             " Total Bal: Rs.  " +
             balance.toStringAsFixed(2) +
             " CR Clr Bal: Rs. " +
@@ -46,12 +46,12 @@ class CentralBank {
     }
 
     if (txnType.toLowerCase() == "credit") {
-      int amount = 1000 + random.nextInt(10000 - 1000);
+      int amount = 50 + random.nextInt(4300 - 50);
       balance = balance + amount;
       smsBody = "A/c 3XXXXX" +
           account.toString() +
           " credited by Rs. " +
-          amount.toString() +
+          amount.toStringAsFixed(2) +
           " Total Bal: Rs.  " +
           balance.toStringAsFixed(2) +
           " CR Clr Bal: Rs. " +
