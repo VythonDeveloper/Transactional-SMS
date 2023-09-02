@@ -78,8 +78,11 @@ class _Transactional24HHomeUIState extends State<Transactional24HHomeUI> {
         date.isAfter(end);
         date = date.subtract(Duration(days: 1))) {
       List<DateTime> otherDaysRandomTimes = [];
+
+      int randomSMSCount = 8 + random.nextInt(15 - 8);
+
       otherDaysRandomTimes = generateRandomTimesForOtherDays(
-          startDate: date, smsCount: random.nextInt(10));
+          startDate: date, smsCount: randomSMSCount);
       otherDaysRandomTimes.sort();
       otherDaysRandomTimes = otherDaysRandomTimes.reversed.toList();
       dateMasterList.addAll(otherDaysRandomTimes);
@@ -87,8 +90,9 @@ class _Transactional24HHomeUIState extends State<Transactional24HHomeUI> {
 
     //    This one is for current day
     List<DateTime> currentDayRandomTimes = [];
-    currentDayRandomTimes = generateRandomTimesForToday(
-        startDate: now, smsCount: random.nextInt(11));
+    int randomSMSCount = 9 + random.nextInt(14 - 9);
+    currentDayRandomTimes =
+        generateRandomTimesForToday(startDate: now, smsCount: randomSMSCount);
     currentDayRandomTimes.sort();
     currentDayRandomTimes = currentDayRandomTimes.reversed.toList();
     dateMasterList.insertAll(0, currentDayRandomTimes);
