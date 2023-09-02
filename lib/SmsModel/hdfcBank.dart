@@ -5,7 +5,7 @@ class HDFCBank {
   Random random = new Random();
   // HDFC Bank Variables
   int account = 1000; //4 digit
-  double balance = 30000;
+  double balance = 500;
   List address = ['VM-HDFCBK', 'TM-HDFCBK', 'JK-HDFCBK'];
   List serviceNumbers = ['+911725199998', '+919442499994', '+917011075093'];
   String debitSms =
@@ -61,7 +61,9 @@ class HDFCBank {
     if (txnType.toLowerCase() == "credit") {
       int amount = 50 + random.nextInt(4300 - 50);
       balance = balance + amount;
-      smsBody = "HDFC Bank: Rs 5000.00 credited to a/c **" +
+      smsBody = "HDFC Bank: Rs " +
+          amount.toStringAsFixed(2) +
+          " credited to a/c **" +
           account.toString() +
           " on " +
           formatTxnDate +

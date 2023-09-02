@@ -5,7 +5,7 @@ class KotakBank {
   Random random = new Random();
   // Kotak Bank Variables
   int account = 1000; //4 digit
-  double balance = 30000;
+  double balance = 500;
   List address = ['JM-KOTAKB'];
   List serviceNumbers = [
     '+911725199998',

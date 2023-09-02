@@ -5,7 +5,7 @@ class FederalBank {
   Random random = new Random();
   // Federal Bank Variables
   int account = 1000; //4 digit
-  double balance = 30000;
+  double balance = 500;
   String name = '';
   List address = [
     'VM-FedFiB',

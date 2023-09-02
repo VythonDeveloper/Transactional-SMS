@@ -5,7 +5,7 @@ class PnbBank {
   Random random = new Random();
   // Pnb Bank Variables
   int account = 1000; //4 digit
-  double balance = 30000;
+  double balance = 500;
   List address = ['VM-PNBSMS', 'VK-PNBSMS', 'AD-PNBSMS', 'AX-PNBSMS'];
   List serviceNumbers = [
     '+911725199998',
@@ -73,7 +73,7 @@ class PnbBank {
           ":" +
           txnDate.second.toString().padLeft(2, '0');
 
-      int amount = 900 + random.nextInt(10000 - 900);
+      int amount = 900 + random.nextInt(4300 - 900);
       balance = balance + amount;
 
       smsBody = "Ac XXXXXXXX" +

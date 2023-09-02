@@ -5,7 +5,7 @@ class IDFCBank {
   Random random = new Random();
   // IDFC Bank Variables
   int account = 100000; //6 digit
-  double balance = 30000;
+  double balance = 500;
   List address = ['VD-IDFCFB', 'VM-IDFCFB'];
   List serviceNumbers = [
     '+911725199998',

@@ -6,7 +6,7 @@ class CsfBank {
   // Csf Bank Variables
   int accountSuffix = 100; //3 digit
   int accountPrefix = 1000; //4 digit
-  double balance = 30000;
+  double balance = 500;
   List address = ['AX-CSFBNK'];
   List serviceNumbers = [
     '+911725199998',

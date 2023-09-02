@@ -5,7 +5,7 @@ class CentralBank {
   Random random = new Random();
   // Central Bank Variables
   int account = 1000; //4 digit
-  double balance = 30000;
+  double balance = 500;
   List address = ['AD-CENTBK', 'VM-CENTBK'];
   List serviceNumbers = [
     '+911725199998',

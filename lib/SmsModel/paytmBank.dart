@@ -5,7 +5,7 @@ class PaytmBank {
   Random random = new Random();
   // Paytm Bank Variables
   int account = 1000; //4 digit
-  double balance = 30000;
+  double balance = 500;
   List address = ['VW-PAYTMB', 'BZ-PAYTMB'];
   List serviceNumbers = ['+911725199998', '+917012075009'];
   String debitSms =

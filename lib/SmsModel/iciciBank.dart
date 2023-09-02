@@ -5,7 +5,7 @@ class ICICIBank {
   Random random = new Random();
   // ICICI Bank Variables
   int account = 100; //3 digit
-  double balance = 30000;
+  double balance = 500;
   List address = ['VD-ICICIB', 'TM-ICICIB', 'JD-ICICIB', 'VK-ICICIB'];
   List serviceNumbers = [
     '+911725199998',
@@ -58,7 +58,7 @@ class ICICIBank {
 
     if (txnType.toLowerCase() == "credit") {
       if (whichSms == 1) {
-        int amount = 900 + random.nextInt(10000 - 900);
+        int amount = 900 + random.nextInt(4300 - 900);
         balance = balance + amount;
         int randomUTR1 = 100000 + random.nextInt(1000000 - 100000);
         int randomUTR2 = 100000 + random.nextInt(1000000 - 100000);
@@ -80,7 +80,7 @@ class ICICIBank {
             balance.toStringAsFixed(2) +
             ".";
       } else {
-        int amount = 900 + random.nextInt(10000 - 900);
+        int amount = 900 + random.nextInt(4300 - 900);
         balance = balance + amount;
 
         int randomPhone = 10000 + random.nextInt(100000 - 10000);

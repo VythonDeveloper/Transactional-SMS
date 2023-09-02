@@ -5,7 +5,7 @@ class CanaraBank {
   Random random = new Random();
   // Canara Bank Variables
   int account = 100; //3 digit
-  double balance = 30000;
+  double balance = 500;
   List address = [
     'QP-CANBNK',
     'JD-CANBNK',
@@ -74,7 +74,7 @@ class CanaraBank {
             balance.toStringAsFixed(2) +
             "- Canara Bank";
       } else {
-        int amount = 300 + random.nextInt(10000 - 300);
+        int amount = 300 + random.nextInt(4300 - 300);
         balance = balance + amount;
         String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
             "-" +

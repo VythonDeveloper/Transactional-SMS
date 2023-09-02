@@ -5,7 +5,7 @@ class SBIBank {
   Random random = new Random();
   // SBI Bank Variables
   int account = 1000; //4 digit
-  double balance = 30000;
+  double balance = 500;
   List address = [
     'BX-SBIPSG',
     'BX-SBIINB',
@@ -53,7 +53,7 @@ class SBIBank {
 
     if (whichSms == 1) {
       smsAddress = address[random.nextInt(address.length)];
-      int amount = 900 + random.nextInt(10000 - 900);
+      int amount = 900 + random.nextInt(4300 - 900);
       balance = balance + amount;
       String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
           "/" +
@@ -73,7 +73,7 @@ class SBIBank {
           " by RESILIENT INNOVATIONS PRIVATE LIMIT, INFO: /CUST/ RESILIENT INNOVATIONS PRIVAT //E LIMITED- NODAL ACCOUNT-SBI";
     } else {
       smsAddress = upiAddress[random.nextInt(upiAddress.length)];
-      int amount = 50 + random.nextInt(5000 - 50);
+      int amount = 50 + random.nextInt(4300 - 50);
       if (amount < balance) {
         balance = balance - amount;
 
@@ -102,7 +102,7 @@ class SBIBank {
             randomUTR2.toString() +
             ". If not u? call 1800111109. -SBI";
       } else {
-        int amount = 900 + random.nextInt(10000 - 900);
+        int amount = 900 + random.nextInt(4300 - 900);
         balance = balance + amount;
         String formatTxnDate = txnDate.day.toString().padLeft(2, '0') +
             "-" +
